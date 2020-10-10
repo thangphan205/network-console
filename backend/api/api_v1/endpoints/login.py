@@ -73,7 +73,6 @@ async def login_for_access_token(
             "user_role": user.user_role,
             "is_active": user.is_active,
             "department": user.department,
-            "ipaddress": user.ipaddress,
             "status": "ok",
             "type": "account",
             "currentAuthority": currentAuthority,

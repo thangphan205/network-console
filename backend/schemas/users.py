@@ -15,7 +15,6 @@ class UserBase(BaseModel):
     login_fail: int = 0
     department: str = ""
     description: str = ""
-    ipaddress: str = ""
 
 
 class UserCreate(UserBase):
@@ -26,26 +25,8 @@ class UserUpdate(UserBase):
     pass
 
 
-class UserUpdateVPN(BaseModel):
-    is_active: bool = False
-    ovpn_password: str = ""
-
-
-class UserUpdateVPNOtp(BaseModel):
-    name: str = ""
-    value: str = ""
-
-
-class UserUpdateVPNAction(BaseModel):
-    value: str = ""
-
-
 class UserUpdatePassword(BaseModel):
     password: str = ""
-
-
-class UserUpdatePasswordVPN(BaseModel):
-    ovpn_password: str = ""
 
 
 class User(UserBase):
