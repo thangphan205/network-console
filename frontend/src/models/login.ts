@@ -4,6 +4,8 @@ import { history, Reducer, Effect } from 'umi';
 import { fakeAccountLogin } from '@/services/login';
 import { setAuthority } from '@/utils/authority';
 import { getPageQuery } from '@/utils/utils';
+import decode from 'jwt-decode';
+import { message } from 'antd';
 
 export interface StateType {
   status?: 'ok' | 'error';
@@ -38,7 +40,9 @@ const Model: LoginModelType = {
         payload: response,
       });
       // Login successfully
-      if (response.status === 'ok') {
+      if (response.status === true) {
+        localStorage.setItem("access_token", response.access_token);
+        message.success('Logged in!');
         const urlParams = new URL(window.location.href);
         const params = getPageQuery();
         let { redirect } = params as { redirect: string };
@@ -55,12 +59,15 @@ const Model: LoginModelType = {
           }
         }
         history.replace(redirect || '/');
+      } else {
+        message.error("Login FAIL! Contact Administrator.")
       }
     },
 
     logout() {
       const { redirect } = getPageQuery();
       // Note: There may be security issues, please note
+      localStorage.clear();
       if (window.location.pathname !== '/user/login' && !redirect) {
         history.replace({
           pathname: '/user/login',
@@ -74,11 +81,11 @@ const Model: LoginModelType = {
 
   reducers: {
     changeLoginStatus(state, { payload }) {
-      setAuthority(payload.currentAuthority);
+      setAuthority(decode(payload.access_token).currentAuthority);
       return {
         ...state,
-        status: payload.status,
-        type: payload.type,
+        status: decode(payload.access_token).status,
+        type: decode(payload.access_token).type,
       };
     },
   },

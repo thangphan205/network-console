@@ -21,15 +21,15 @@ interface GAFieldsObject {
   nonInteraction?: boolean;
 }
 interface Window {
-  ga: (
-    command: 'send',
-    hitType: 'event' | 'pageview',
-    fieldsObject: GAFieldsObject | string,
-  ) => void;
+  // ga: (
+  //   command: 'send',
+  //   hitType: 'event' | 'pageview',
+  //   fieldsObject: GAFieldsObject | string,
+  // ) => void;
   reloadAuthorized: () => void;
 }
 
-declare let ga: Function;
+// declare let ga: Function;
 
 // preview.pro.ant.design only do not use in your production ;
 // preview.pro.ant.design 专用环境变量，请不要在你的项目中使用它。
