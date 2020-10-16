@@ -94,14 +94,15 @@ const Login: LoginType = (props) => {
                 onChange={(activeKey) => {
                   setType(activeKey);
                 }}
+                centered
               >
                 {TabChildren}
               </Tabs>
               {otherChildren}
             </React.Fragment>
           ) : (
-            props.children
-          )}
+              props.children
+            )}
         </Form>
       </div>
     </LoginContext.Provider>
