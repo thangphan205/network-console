@@ -11,9 +11,11 @@ from logger import init_logging
 
 models.Base.metadata.create_all(bind=engine)
 
-app = FastAPI(title="network_console_api", openapi_url=f"{settings.API_V1_STR}/openapi.json")
+app = FastAPI(
+    title="network_console_api", openapi_url=f"{settings.API_V1_STR}/openapi.json"
+)
 app.include_router(api_router, prefix=settings.API_V1_STR)
-init_logging()
+# init_logging()
 
 
 origins = [

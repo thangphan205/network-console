@@ -1,0 +1,18 @@
+---
+core:
+    num_workers: 20
+
+inventory:
+    plugin: NetBoxInventory2
+    options:
+        nb_url: "https://netbox.hocmang.net"
+        nb_token: "e91d18faac0d56516c81cd9fd384a80d118c3238"
+        ssl_verify: False
+        filter_parameters:
+            role:
+                - access-switch
+                - distribution-switch
+                - core-switch
+
+logging:
+    file: "logs/nornir.log"
