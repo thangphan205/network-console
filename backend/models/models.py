@@ -29,3 +29,18 @@ class Users(Base):
     login_fail = Column(Integer)
     department = Column(String)
     description = Column(String)
+
+
+class Switches(Base):
+    __tablename__ = "switches"
+
+    id = Column(Integer, primary_key=True, index=True)
+    hostname = Column(String)
+    ip_address = Column(String)
+    type_os = Column(String)
+    group = Column(String)
+    status = Column(String)
+    description = Column(String)
+    fast_cli = Column(Boolean)
+    last_check = Column(DateTime)
+    location = Column(String)
