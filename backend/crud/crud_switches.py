@@ -7,6 +7,7 @@ from fastapi.encoders import jsonable_encoder
 from models import models
 from schemas.switches import Switches, SwitchesCreate
 from schemas.users import User
+from utils.nornir import NornirModel
 
 
 def get_switches(
@@ -15,7 +16,9 @@ def get_switches(
     limit: int = 100,
 ):
 
-    return db.query(models.Switches).order_by(models.Switches.id).all()
+    # return db.query(models.Switches).order_by(models.Switches.id).all()
+    switches = NornirModel.get_devices()
+    return switches
 
 
 def get_switches_by_id(db: Session, id: int):
